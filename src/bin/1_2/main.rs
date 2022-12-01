@@ -3,7 +3,6 @@ use std::io::{self, BufRead};
 
 fn main() -> anyhow::Result<()> {
     let f = File::open("data/1.txt")?;
-    // Seems there's no .sorted()
     let mut elves = io::BufReader::new(f)
         .lines()
         .flatten() // Remove read errors
@@ -15,6 +14,7 @@ fn main() -> anyhow::Result<()> {
                 .sum()
         })
         .collect::<Vec<i64>>();
+    // Seems there's no .sorted()
     elves.sort_unstable_by(|a, b| b.cmp(a));
     let sum = elves.iter().take(3).sum::<i64>();
 
