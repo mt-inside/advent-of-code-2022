@@ -20,7 +20,7 @@ fn main() -> anyhow::Result<()> {
             es
         });
     elves.make_contiguous().sort_unstable_by(|a, b| b.cmp(a));
-    let sum: i64 = elves.iter().take(3).sum();
+    let sum = elves.iter().take(3).sum::<i64>();
 
     println!("Greediest three elves have {} cals", sum);
 
