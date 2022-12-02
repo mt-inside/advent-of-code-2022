@@ -7,7 +7,7 @@ fn main() -> anyhow::Result<()> {
         .lines()
         .flatten() // Remove read errors
         .collect::<Vec<String>>() // Iterator doesn't have split()
-        .split(|l| l == "")
+        .split(String::is_empty)
         .map(|ls| {
             ls.iter()
                 .map(|l| l.parse::<i64>().expect("parse error"))
