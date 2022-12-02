@@ -15,7 +15,7 @@ fn main() -> anyhow::Result<()> {
         })
         .collect::<Vec<i64>>();
     // Seems there's no .sorted()
-    elves.sort_unstable_by(|a, b| b.cmp(a));
+    elves.sort_unstable_by(|a, b| b.cmp(a)); // Reverse
     let sum = elves.iter().take(3).sum::<i64>();
 
     println!("Greediest three elves have {} cals", sum);
