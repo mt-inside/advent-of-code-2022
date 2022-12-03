@@ -140,5 +140,3 @@ impl std::str::FromStr for Outcome {
         }
     }
 }
-
-// TODO omg move all this shit to member functions
