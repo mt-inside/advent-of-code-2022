@@ -1,3 +1,5 @@
+use crate::lift_m2;
+
 #[derive(thiserror::Error, Debug)]
 pub enum MoveParseError {
     #[error("Move `{0}` not recognised")]
@@ -82,6 +84,10 @@ pub struct Thrower {
     outcome: Outcome,
 }
 impl Thrower {
+    fn new(them: Move, outcome: Outcome) -> Self {
+        Thrower { them, outcome }
+    }
+
     pub fn throw(&self) -> Round {
         use Move::*;
         use Outcome::*;
@@ -108,16 +114,8 @@ impl std::str::FromStr for Thrower {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         let parts = s.split(" ").collect::<Vec<&str>>();
-        Ok(Thrower {
-            them: parts[0].parse()?,
-            outcome: parts[1].parse()?,
-        })
+        lift_m2(Thrower::new, parts[0].parse(), parts[1].parse())
     }
-}
-
-// TODO: try the above with this
-fn lift_m2<T, U, V, E, F: Fn(T, U) -> V>(f: F, a: Result<T, E>, b: Result<U, E>) -> Result<V, E> {
-    a.and_then(|a| b.map(|b| f(a, b)))
 }
 
 #[derive(Debug, PartialEq, Copy, Clone)]
