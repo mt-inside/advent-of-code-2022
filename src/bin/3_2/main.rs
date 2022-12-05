@@ -11,12 +11,11 @@ fn main() -> anyhow::Result<()> {
     let res = io::BufReader::new(f)
         .lines()
         .flatten()
+        .map(|rucksack| HashSet::from_iter(rucksack.chars().into_iter()))
         .array_chunks::<3>()
         .map(|chunk| {
-            let sets: [HashSet<char>; 3] =
-                chunk.map(|rucksack| HashSet::from_iter(rucksack.chars().into_iter()));
-            let foo = intersections(&sets[..]);
-            let badge = foo.iter().next().unwrap();
+            let commons = intersections(&chunk[..]);
+            let badge = commons.iter().next().unwrap();
             pri(badge)
         })
         .sum::<u32>();
