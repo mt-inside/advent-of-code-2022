@@ -40,8 +40,8 @@ impl std::str::FromStr for Move {
 }
 
 pub struct Round {
-    me: Move,
-    them: Move,
+    pub me: Move,
+    pub them: Move,
 }
 impl Round {
     pub fn score(&self) -> i32 {

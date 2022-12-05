@@ -24,136 +24,157 @@ mod test {
 
     #[test]
     fn test_outcome() {
-        use Outcome::*;
+        use advent_of_code_2022::two::Move::*;
+        use advent_of_code_2022::two::Outcome::*;
 
         assert_eq!(
-            outcome(&Round {
-                me: Move::Paper,
-                them: Move::Paper,
-            }),
+            Round {
+                me: Paper,
+                them: Paper,
+            }
+            .outcome(),
             Draw
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Paper,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Paper,
+                them: Scissors,
+            }
+            .outcome(),
             Loss,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Paper,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Paper,
+                them: Rock,
+            }
+            .outcome(),
             Win,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Scissors,
-                them: Move::Paper,
-            }),
+            Round {
+                me: Scissors,
+                them: Paper,
+            }
+            .outcome(),
             Win,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Scissors,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Scissors,
+                them: Scissors,
+            }
+            .outcome(),
             Draw,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Scissors,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Scissors,
+                them: Rock,
+            }
+            .outcome(),
             Loss,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Rock,
-                them: Move::Paper
-            }),
+            Round {
+                me: Rock,
+                them: Paper
+            }
+            .outcome(),
             Loss,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Rock,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Rock,
+                them: Scissors,
+            }
+            .outcome(),
             Win,
         );
         assert_eq!(
-            outcome(&Round {
-                me: Move::Rock,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Rock,
+                them: Rock,
+            }
+            .outcome(),
             Draw,
         );
     }
 
     #[test]
     fn test_score_round() {
+        use advent_of_code_2022::two::Move::*;
+
         assert_eq!(
-            score_round(&Round {
-                me: Move::Paper,
-                them: Move::Paper,
-            }),
+            Round {
+                me: Paper,
+                them: Paper,
+            }
+            .score(),
             5
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Paper,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Paper,
+                them: Scissors,
+            }
+            .score(),
             2
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Paper,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Paper,
+                them: Rock,
+            }
+            .score(),
             8
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Scissors,
-                them: Move::Paper,
-            }),
+            Round {
+                me: Scissors,
+                them: Paper,
+            }
+            .score(),
             9
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Scissors,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Scissors,
+                them: Scissors,
+            }
+            .score(),
             6
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Scissors,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Scissors,
+                them: Rock,
+            }
+            .score(),
             3
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Rock,
-                them: Move::Paper
-            }),
+            Round {
+                me: Rock,
+                them: Paper
+            }
+            .score(),
             1,
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Rock,
-                them: Move::Scissors,
-            }),
+            Round {
+                me: Rock,
+                them: Scissors,
+            }
+            .score(),
             7
         );
         assert_eq!(
-            score_round(&Round {
-                me: Move::Rock,
-                them: Move::Rock,
-            }),
+            Round {
+                me: Rock,
+                them: Rock,
+            }
+            .score(),
             4
         );
     }
