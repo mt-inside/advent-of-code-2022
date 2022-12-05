@@ -1,3 +1,4 @@
+use advent_of_code_2022::three::pri;
 use std::collections::hash_map::RandomState;
 use std::collections::HashSet;
 use std::fs::File;
@@ -31,15 +32,6 @@ fn calc(rucksacks: Vec<String>) -> u32 {
             pri(pair.next().unwrap())
         })
         .sum::<u32>()
-}
-
-fn pri(c: &char) -> u32 {
-    let ascii = u32::from(c.clone());
-    match c {
-        'a'..='z' => ascii - u32::from('a') + 1,
-        'A'..='Z' => ascii - u32::from('A') + 1 + 26,
-        _ => panic!("invalid character"),
-    }
 }
 
 #[cfg(test)]
