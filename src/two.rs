@@ -44,6 +44,9 @@ pub struct Round {
     pub them: Move,
 }
 impl Round {
+    fn new(me: Move, them: Move) -> Self {
+        Round { me, them }
+    }
     pub fn score(&self) -> i32 {
         self.me.score() + self.outcome() as i32
     }
@@ -68,14 +71,8 @@ impl std::str::FromStr for Round {
     type Err = MoveParseError;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let parts = s
-            .split(" ")
-            .map(|m| m.parse().unwrap())
-            .collect::<Vec<Move>>();
-        Ok(Round {
-            them: parts[0],
-            me: parts[1],
-        })
+        let parts = s.split(" ").collect::<Vec<&str>>();
+        lift_m2(Round::new, parts[0].parse(), parts[1].parse())
     }
 }
 
